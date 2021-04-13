@@ -59,7 +59,7 @@ func add_exception(exception: Object) -> void:
 	_exceptions.append(exception)
 
 
-# Removes all exceptions
+# Removes all exceptions.
 func reset_exceptions() -> void:
 	_exceptions = Array()
 
