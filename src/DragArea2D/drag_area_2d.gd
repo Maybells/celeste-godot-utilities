@@ -12,6 +12,9 @@ signal put_down
 
 # Whether the area can be dragged
 export (bool) var enabled := true
+# If false, drag will release when user lets go of the mouse button.
+# If true, drag won't release until user clicks a second time.
+export (bool) var sticky_click := false
 # If true, the dragged area will move so that the mouse is at (0, 0).
 # If false, the dragged area will move so that the mouse retains the same relative position.
 export (bool) var grab_centered := true
@@ -42,7 +45,9 @@ func _input(event):
 		if enabled and event.pressed and not dragging and _is_in_drag_area(event.position):
 			pick_up()
 			get_tree().set_input_as_handled()
-		elif not event.pressed and dragging:
+		elif not sticky_click and not event.pressed and dragging:
+			put_down()
+		elif sticky_click and event.pressed and dragging:
 			put_down()
 
 
