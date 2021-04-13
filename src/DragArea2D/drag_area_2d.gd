@@ -41,6 +41,7 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if enabled and event.pressed and not dragging and _is_in_drag_area(event.position):
 			pick_up()
+			get_tree().set_input_as_handled()
 		elif not event.pressed and dragging:
 			put_down()
 
