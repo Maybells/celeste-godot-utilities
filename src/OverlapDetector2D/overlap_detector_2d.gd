@@ -16,15 +16,15 @@ export (bool) var continuous_detection := false
 # The most recent overlapping object
 var current_overlap: Object
 # Position of point last frame
-var last_position: Vector2
+var _last_position: Vector2
 # Objects that will be ignored
-var exceptions := Array()
+var _exceptions := Array()
 
 
 # If `continuous_detection` is true or `position` has changed, recalculate the overlap.
 func _physics_process(delta):
-	if continuous_detection or global_position != last_position:
-		last_position = global_position
+	if continuous_detection or global_position != _last_position:
+		_last_position = global_position
 		_overlap_update()
 
 
@@ -39,7 +39,7 @@ func _overlap_update() -> void:
 # Finds the overlapping object.
 func _get_overlap() -> Object:
 	var space_state = get_world_2d().direct_space_state
-	var results = space_state.intersect_point(global_position, 16, exceptions, 2147483647, true, true)
+	var results = space_state.intersect_point(global_position, 16, _exceptions, 2147483647, true, true)
 	
 	if results.empty():
 		return null
@@ -56,7 +56,12 @@ func _get_overlap() -> Object:
 
 # Adds an exception that will no longer be detected.
 func add_exception(exception: Object) -> void:
-	exceptions.append(exception)
+	_exceptions.append(exception)
+
+
+# Removes all exceptions
+func reset_exceptions() -> void:
+	_exceptions = Array()
 
 
 # Recalculates overlap.

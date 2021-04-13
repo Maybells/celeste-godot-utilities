@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/eh_jogos.shared_variables/DictionaryVariable.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "DragArea2D",
 "language": "GDScript",
 "path": "res://src/DragArea2D/drag_area_2d.gd"
@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/eh_jogos.docs-exporter/godot_docs_scripts/MarkdownDocsExporter.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "OverlapDetector2D",
 "language": "GDScript",
 "path": "res://src/OverlapDetector2D/overlap_detector_2d.gd"

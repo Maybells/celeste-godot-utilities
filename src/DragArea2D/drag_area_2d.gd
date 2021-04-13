@@ -1,4 +1,4 @@
-# Allows the user to move the parent object by dragging it with the mouse.
+# Allows the user to move the parent object by dragging with the mouse.
 class_name DragArea2D
 
 extends Area2D
