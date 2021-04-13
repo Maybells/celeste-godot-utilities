@@ -10,17 +10,19 @@ signal picked_up
 signal put_down
 
 
-# If true, the dragged parent will move so that the mouse is at (0, 0).
-# If false, the dragged parent will move so that the mouse retains the same relative position.
+# Whether the area can be dragged
+export (bool) var enabled := true
+# If true, the dragged area will move so that the mouse is at (0, 0).
+# If false, the dragged area will move so that the mouse retains the same relative position.
 export (bool) var grab_centered := true
-# Prevent dragging from moving parent along the x-axis
+# Whether dragging can change the x position
 export (bool) var restrict_x := false
-# Prevent dragging from moving parent along the y-axis
+# Whether dragging can change the y position
 export (bool) var restrict_y := false
 
-# Whether the object is currently being dragged
+# Whether the area is currently being dragged
 var dragging := false
-# The initial mouse position relative to the dragged object
+# The initial mouse position relative to the dragged area
 var drag_offset := Vector2()
 
 
@@ -37,7 +39,7 @@ func _process(delta):
 # If the user clicks the drag area, starts dragging. If the user unclicks, stops dragging.
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if event.pressed and not dragging and _is_in_drag_area(event.position):
+		if enabled and event.pressed and not dragging and _is_in_drag_area(event.position):
 			pick_up()
 		elif not event.pressed and dragging:
 			put_down()
