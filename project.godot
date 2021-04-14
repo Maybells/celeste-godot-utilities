@@ -49,10 +49,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/eh_jogos.shared_variables/DictionaryVariable.gd"
 }, {
-"base": "Area2D",
-"class": "DragArea2D",
+"base": "KinematicBody2D",
+"class": "DragMovement2D",
 "language": "GDScript",
-"path": "res://src/DragArea2D/drag_area_2d.gd"
+"path": "res://src/DragMovement2D/drag_movement_2d.gd"
 }, {
 "base": "HBoxContainer",
 "class": "FilePathLineEdit",
@@ -123,7 +123,7 @@ _global_script_class_icons={
 "CategoryOptions": "",
 "Collapsible": "",
 "DictionaryVariable": "",
-"DragArea2D": "",
+"DragMovement2D": "",
 "FilePathLineEdit": "",
 "HugoMarkdownDocsExporter": "",
 "JsonIO": "",

@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://demos/DragArea + OverlapDetector/player.gd" type="Script" id=1]
-[ext_resource path="res://src/DragArea2D/drag_area_2d.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/DragMovement2D/drag_movement_2d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/OverlapDetector2D/overlap_detector_2d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 
@@ -9,7 +9,13 @@
 radius = 100.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 250, 100 )
+extents = Vector2( 75, 100 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 50.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 32 )
 
 [node name="World" type="Node2D"]
 
@@ -38,7 +44,7 @@ polygon = PoolVector2Array( 0, 100, 100, 200, 100, 0, 0, -100, -100, 0, -100, 20
 [node name="AreaC" type="Area2D" parent="." groups=[
 "DropZone",
 ]]
-position = Vector2( 663.087, 455.635 )
+position = Vector2( 893.652, 455.635 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -59,6 +65,15 @@ position = Vector2( -95.8165, 114.887 )
 scale = Vector2( 0.649409, 0.704736 )
 polygon = PoolVector2Array( -16, 85, 89, -79, 297, 96, 117, 198, 91, 169, 201, 98, 95, 8, 3, 191, 147, 264, 469, 117, 124, -153, -25, -105, -102, 119, -33, 154 )
 
+[node name="CollisionTest" type="StaticBody2D" parent="."]
+position = Vector2( 540.506, 455.635 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionTest"]
+polygon = PoolVector2Array( -181.31, -46.0518, -185.09, 116.478, 201.706, 117.738, 200.446, -32.1927, -54.058, -41.0121, -54.058, 0.565247, 166.428, -3.21454, 167.688, 88.7597, -157.371, 86.2398, -157.371, -46.0518 )
+
 [node name="Player" type="Sprite" parent="."]
 position = Vector2( 413.524, 195.079 )
 texture = ExtResource( 4 )
@@ -67,7 +82,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="DragArea2D" parent="Player" instance=ExtResource( 2 )]
+[node name="DragMovement2D" parent="Player" instance=ExtResource( 2 )]
+click_shape = SubResource( 3 )
+collision_enabled = true
+collision_shape = SubResource( 4 )
 
 [node name="OverlapDetector2D" parent="Player" instance=ExtResource( 3 )]
 detection_groups = PoolStringArray( "DropZone" )
