@@ -135,15 +135,25 @@ func _collision_shape_set(val: Shape2D):
 
 # Makes the parent start following the mouse.
 func pick_up() -> void:
-	dragging = true
-	if grab_centered:
-		_drag_offset = Vector2()
-	else:
-		_drag_offset = get_viewport().get_mouse_position() - self.global_position
+	attach()
 	emit_signal("picked_up")
 
 
 # Makes the parent stop following the mouse.
 func put_down() -> void:
-	dragging = false
+	release()
 	emit_signal("put_down")
+
+
+# Makes the parent start following the mouse without triggering a signal
+func attach() -> void:
+	dragging = true
+	if grab_centered:
+		_drag_offset = Vector2()
+	else:
+		_drag_offset = get_viewport().get_mouse_position() - self.global_position
+
+
+# Makes the parent stop following the mouse without triggering a signal
+func release() -> void:
+	dragging = false
