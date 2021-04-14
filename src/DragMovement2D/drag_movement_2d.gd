@@ -61,13 +61,28 @@ func _physics_process(delta):
 # If the user clicks the drag area, starts dragging. If the user unclicks, stops dragging.
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if enabled and event.pressed and not dragging and _is_in_drag_area(event.position):
-			pick_up()
-			get_tree().set_input_as_handled()
-		elif not sticky_click and not event.pressed and dragging:
-			put_down()
-		elif sticky_click and event.pressed and dragging:
-			put_down()
+		_handle_input(event)
+	elif event is InputEventScreenTouch:
+		_handle_input(event)
+
+
+# Begins or stops the drag if possible
+func _handle_input(event: InputEvent):
+	if _can_pick_up(event):
+		pick_up()
+		get_tree().set_input_as_handled()
+	elif _can_put_down(event):
+		put_down()
+
+
+# Whether the user can start dragging
+func _can_pick_up(event: InputEvent) -> bool:
+	return enabled and event.pressed and not dragging and _is_in_drag_area(event.position)
+
+
+# Whether the user can stop dragging
+func _can_put_down(event: InputEvent) -> bool:
+	return dragging and sticky_click == event.pressed
 
 
 # Checks if `point` is within the drag area.
