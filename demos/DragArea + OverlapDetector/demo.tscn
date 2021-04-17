@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://demos/DragArea + OverlapDetector/player.gd" type="Script" id=1]
 [ext_resource path="res://src/DragMovement2D/drag_movement_2d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/OverlapDetector2D/overlap_detector_2d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://src/RegularPolygon2D/regular_polygon_2d.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 100.0
@@ -30,6 +31,12 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaA"]
 shape = SubResource( 1 )
 
+[node name="RegularPolygon2D" type="Polygon2D" parent="AreaA"]
+color = Color( 0, 1, 0, 1 )
+script = ExtResource( 5 )
+sides = 20
+radius = 100.0
+
 [node name="AreaB" type="Area2D" parent="." groups=[
 "DropZone",
 ]]
@@ -55,6 +62,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaC"]
 shape = SubResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="AreaC"]
+color = Color( 0, 1, 0, 1 )
+polygon = PoolVector2Array( -75, -100, 75, -100, 75, 100, -75, 100 )
 
 [node name="AreaD" type="Area2D" parent="." groups=[
 "DropZone",
