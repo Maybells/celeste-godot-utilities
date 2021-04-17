@@ -41,6 +41,10 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaB"]
 polygon = PoolVector2Array( 0, 100, 100, 200, 100, 0, 0, -100, -100, 0, -100, 200 )
 
+[node name="Polygon2D" type="Polygon2D" parent="AreaB"]
+color = Color( 0, 1, 0, 1 )
+polygon = PoolVector2Array( 0, 100, 100, 200, 100, 0, 0, -100, -100, 0, -100, 200 )
+
 [node name="AreaC" type="Area2D" parent="." groups=[
 "DropZone",
 ]]
@@ -72,7 +76,11 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionTest"]
-polygon = PoolVector2Array( -181.31, -46.0518, -185.09, 116.478, 201.706, 117.738, 200.446, -32.1927, -54.058, -41.0121, -54.058, 0.565247, 166.428, -3.21454, 167.688, 88.7597, -157.371, 86.2398, -157.371, -46.0518 )
+polygon = PoolVector2Array( -180, -50, -180, 115, 200, 120, 200, -30, -50, -30, -50, 0, 170, 0, 170, 90, -160, 90, -160, -50 )
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionTest"]
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -50, -30, 200, -30, 200, 120, -180, 120, -180, -50, -160, -50, -160, 90, 170, 90, 170, 0, -50, 0 )
 
 [node name="Player" type="Sprite" parent="."]
 position = Vector2( 413.524, 195.079 )
