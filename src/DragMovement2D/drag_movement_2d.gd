@@ -28,7 +28,7 @@ export (bool) var sticky_click := false
 export (bool) var grab_centered := true
 # Whether the user clicking will automatically begin the drag.
 # Set to false if you want to handle the signal manually
-export (bool) var automatic_follow := true
+export (bool) var automatic_attach := true
 # Whether the user releasing will automatically end the drag.
 # Set to false if you want to handle the signal manually
 export (bool) var automatic_drop := true
@@ -143,7 +143,7 @@ func _collision_shape_set(val: Shape2D):
 # Makes the parent start following the mouse.
 func lift() -> void:
 	emit_signal("drag_begun")
-	if automatic_follow:
+	if automatic_attach:
 		attach()
 
 
