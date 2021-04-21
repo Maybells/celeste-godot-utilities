@@ -26,6 +26,12 @@ export (bool) var sticky_click := false
 # If true, the dragged area will move so that the mouse is at (0, 0).
 # If false, the dragged area will move so that the mouse retains the same relative position.
 export (bool) var grab_centered := true
+# Whether the user clicking will automatically begin the drag.
+# Set to false if you want to handle the signal manually
+export (bool) var automatic_follow := true
+# Whether the user unclicking will automatically stop the drag.
+# Set to false if you want to handle the signal manually
+export (bool) var automatic_drop := true
 # Whether dragging can change the x position
 export (bool) var restrict_x := false
 # Whether dragging can change the y position
@@ -135,14 +141,16 @@ func _collision_shape_set(val: Shape2D):
 
 # Makes the parent start following the mouse.
 func pick_up() -> void:
-	attach()
 	emit_signal("picked_up")
+	if automatic_follow:
+		attach()
 
 
 # Makes the parent stop following the mouse.
 func put_down() -> void:
-	release()
 	emit_signal("put_down")
+	if automatic_drop:
+		release()
 
 
 # Makes the parent start following the mouse without triggering a signal
